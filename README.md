@@ -10,9 +10,9 @@
   </p>
 </p>
 
-## About Midday
+## Quem somos?
 
-Midday is an all-in-one tool designed to help freelancers, contractors, consultants, and solo entrepreneurs manage their business operations more efficiently. It integrates various functions typically scattered across multiple platforms into a single, cohesive system.
+A solução para a gestão administrativa, financeira e acadêmica da sua instituições de ensino.
 
 ## Features
 
