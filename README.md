@@ -10,36 +10,23 @@
   </p>
 </p>
 
-## Quem somos?
+## Quem somos? [Descrição]
 
 A solução para a gestão administrativa, financeira e acadêmica da sua instituições de ensino.
 
-## Features
+## Features [Funcionalidades]
 
-**Time Tracking**: Allows for live time tracking of projects to boost productivity and collaboration, providing insightful project overviews.<br/>
-**Invoicing**: An upcoming feature that will enable users to create web-based invoices, collaborate in real-time, and synchronize projects seamlessly.<br/>
-**Magic Inbox**: Automatically matches incoming invoices or receipts to the correct transactions, simplifying financial tracking and organization.<br/>
-**Vault**: Secure storage for important files like contracts and agreements, keeping everything in one place for easy access​.<br/>
-**Seamless Export**: Facilitates easy export of financial data, packaged neatly in CSV files for accountants.<br/>
-**Assistant**: Provides tailored insights into financial situations, helping users understand spending patterns, cut costs, and find documents.<br/>
+**Gestão acadêmica**: Consulta de Notas e Frequência, Matrícula Online, Calendário Acadêmico, Consultas Financeiras.<br/>
 
 <br/>
 
-## Get started
+## Como começar? [Passo a passo de como inicializar o app]
 
-We are working on the documentation to get started with Midday for local development: https://docs.midday.ai
+## App Architecture [Tecnologias usadas no app]
 
-## App Architecture
-
-- Monorepo
-- Bun
 - React
 - TypeScript
 - Nextjs
-- Supabase
-- Shadcn
-- ToDesktop
-- Expo
 - TailwindCSS
 
 ### Hosting
@@ -50,16 +37,7 @@ We are working on the documentation to get started with Midday for local develop
 
 ### Services
 
-- Trigger.dev (background jobs)
-- Resend (email)
-- Novu (notifications)
 - Github Actions (CI/CD)
-- GoCardLess (Bank connection EU)
-- Plaid (Bank connection in Canada and US)
-- Teller (Bank connection in the US)
-- Loops (Marketing email)
-- OpenPanel (Events and Analytics)
-- Dub (Short URLs)
 
 ## Repo Activity
 
