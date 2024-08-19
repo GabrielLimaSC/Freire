@@ -1,7 +1,7 @@
 <p align="center">
 	<h1 align="center"><b>Freire</b></h1>
 <p align="center">
-    Run your business smarter
+    Da captação até a saída do aluno
     <br />
     <br />
     <a href="https://claudioav.com">Website</a>
