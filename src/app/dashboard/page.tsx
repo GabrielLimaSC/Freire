@@ -1,5 +1,9 @@
+import { SidebarDashboard } from "@/components/SideBar.dashboard";
+
 export default function Dashboard() {
   return (
-    <div className="h-screen w-full flex justify-center items-center p-10"></div>
+    <div className="h-screen w-full">
+      <SidebarDashboard />
+    </div>
   );
 }

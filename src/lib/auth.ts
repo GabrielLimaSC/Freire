@@ -78,8 +78,6 @@ export async function pegarSessao() {
     senha: senha || "",
   });
 
-  console.log(usuarioAtivo);
-
   if (!usuarioAtivo) {
     return false;
   }
