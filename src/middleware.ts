@@ -1,15 +1,18 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { pegarSessao } from "./lib/auth";
 
 export default async function authMiddleware(request: NextRequest) {
-  console.log(request.headers.get("cookie"));
+  const sessao = await pegarSessao();
 
-  // if (!session) {
-  //   return NextResponse.redirect(new URL("/", request.url));
-  // }
+  console.log(sessao);
+
+  if (!sessao) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/"],
+  matcher: ["/dashboard"],
 };

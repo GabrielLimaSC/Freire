@@ -1,6 +1,6 @@
 "use client";
 
-import { Auth } from "@/lib/auth";
+import { login } from "@/lib/auth";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { useState } from "react";
@@ -17,7 +17,7 @@ export function Login({ className }: LoginTipsProps) {
   const [senhaError, setSenhaError] = useState<string>("");
 
   const entrar = async () => {
-    const auth = await Auth.login({ email, senha });
+    const auth = await login({ email, senha });
 
     setEmail("");
     setSenha("");
