@@ -4,8 +4,6 @@ import { pegarSessao } from "./lib/auth";
 export default async function authMiddleware(request: NextRequest) {
   const sessao = await pegarSessao();
 
-  console.log(sessao);
-
   if (!sessao) {
     return NextResponse.redirect(new URL("/", request.url));
   }
