@@ -1,11 +1,10 @@
 "use client";
 
 import {
-  Calendar,
+  FileText,
   GalleryVerticalEnd,
   Home,
-  MessageSquare,
-  Search,
+  Landmark,
   Settings,
 } from "lucide-react";
 
@@ -22,32 +21,32 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { NavUser } from "./nav-user";
-
-// Menu items.
-const items = [
-  {
-    title: "Home",
-    icon: Home,
-  },
-  {
-    title: "Chat",
-    icon: MessageSquare,
-  },
-  {
-    title: "Calendar",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    icon: Settings,
-  },
-];
-
+import { useSidebarContext } from "@/contexts/sidebar-context";
+import { usePessoaContext } from "@/contexts/pessoa-context";
 export function SidebarDashboard() {
+  const { selectedButton, setSelectedButton } = useSidebarContext();
+
+  const { pessoa } = usePessoaContext();
+
+  const items = [
+    {
+      title: "Home",
+      icon: Home,
+    },
+    {
+      title: "Avaliações",
+      icon: FileText,
+    },
+    {
+      title: "Financeiro",
+      icon: Landmark,
+    },
+    {
+      title: "Configurações",
+      icon: Settings,
+    },
+  ];
+
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
@@ -73,8 +72,11 @@ export function SidebarDashboard() {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <button>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={selectedButton == item.title ? true : false}
+                  >
+                    <button onClick={() => setSelectedButton(item.title)}>
                       <item.icon />
                       <span>{item.title}</span>
                     </button>
@@ -88,9 +90,9 @@ export function SidebarDashboard() {
       <SidebarFooter>
         <NavUser
           user={{
-            role: "Estudante",
-            name: "Cláudio Alves",
-            avatar: "https://avatars.githubusercontent.com/u/45667491?v=4",
+            role: pessoa?.tipo || "",
+            name: pessoa?.nome || "",
+            avatar: "",
           }}
         />
       </SidebarFooter>

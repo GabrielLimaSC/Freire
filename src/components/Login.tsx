@@ -13,11 +13,16 @@ interface LoginTipsProps {
 export function Login({ className }: LoginTipsProps) {
   const [email, setEmail] = useState<string>("");
   const [senha, setSenha] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
   const entrar = async () => {
-    await login({ email, senha });
+    const resposta = await login({ email, senha });
     setEmail("");
     setSenha("");
+
+    if (resposta) {
+      setError(resposta.message);
+    }
   };
 
   return (
@@ -32,6 +37,7 @@ export function Login({ className }: LoginTipsProps) {
           <p>Digite seu email e sua senha para continuar.</p>
         </div>
         <div className="w-full flex flex-col space-y-5">
+          {error && <h1 className="text-sm text-red-500">*{error}</h1>}
           <div className="space-y-2">
             <Label htmlFor="password">Email</Label>
             <Input
