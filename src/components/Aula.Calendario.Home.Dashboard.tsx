@@ -18,7 +18,7 @@ export function BlockCalendarioDashboard({
       </div>
       <div>
         <h1 className="font-bold">{disciplina}</h1>
-        <p className="text-sm text-zinc-300">
+        <p className="text-sm text-muted-foreground">
           {horaInicio} - {horaFim}
         </p>
       </div>

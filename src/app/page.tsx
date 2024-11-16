@@ -44,7 +44,7 @@ export default function Home() {
     <div className="relative h-screen w-full flex justify-center items-center p-10 select-none">
       <div className="flex w-full h-full">
         <div ref={loginTipsRef} className="w-2/5 ">
-          <LoginTips className="h-full" />
+          <LoginTips className="h-full animate-fade-right animate-once animate-ease-linear" />
         </div>
         <Login className="flex-1" />
       </div>

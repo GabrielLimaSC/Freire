@@ -20,7 +20,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { NavUser } from "./nav-user";
+import { NavUser } from "./MenuPessoa.Sidebar.Dashboard";
 import { useSidebarContext } from "@/contexts/sidebar-context";
 import { usePessoaContext } from "@/contexts/pessoa-context";
 export function SidebarDashboard() {

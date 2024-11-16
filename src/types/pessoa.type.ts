@@ -1,6 +1,6 @@
 export interface Pessoa {
   cidade: string;
-  dataNascimento: string;
+  dataNascimento: Date;
   email: string;
   idPessoa: number;
   nome: string;

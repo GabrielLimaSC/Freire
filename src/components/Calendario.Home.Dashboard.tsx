@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BlockCalendarioDashboard } from "./Block.Calendario.Dashboard";
+import { BlockCalendarioDashboard } from "./Aula.Calendario.Home.Dashboard";
 import { Api } from "@/lib/api";
 import { usePessoaContext } from "@/contexts/pessoa-context";
 import { Aula } from "@/types/aula.type";
+import { Divisor } from "./ui/Divisor";
 
 export function CalendarioDashboard() {
   const { pessoa } = usePessoaContext();
@@ -65,9 +66,11 @@ export function CalendarioDashboard() {
           <h1 className="text-xl font-semibold">
             {diaSemanaNome}, {data.dia} de {mesNome}
           </h1>
-          <p className="text-zinc-300">Suas aulas de hoje</p>
         </div>
-
+        <div className="flex items-center space-x-2">
+          <p className="text-muted-foreground text-sm">Hoje</p>
+          <Divisor className="border-muted-foreground" />
+        </div>
         {aulas.map((aula) => (
           <BlockCalendarioDashboard
             key={aula.cadeira}
