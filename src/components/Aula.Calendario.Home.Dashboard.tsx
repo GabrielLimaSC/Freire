@@ -6,11 +6,7 @@ interface Props {
   horaFim: string;
 }
 
-export function BlockCalendarioDashboard({
-  disciplina,
-  horaInicio,
-  horaFim,
-}: Props) {
+export function AulaCalendario({ disciplina, horaInicio, horaFim }: Props) {
   return (
     <div className="p-3 flex justify-start items-center border rounded-xl space-x-5 w-full">
       <div className="rounded-xl bg-blue-600 p-2 text-xl">

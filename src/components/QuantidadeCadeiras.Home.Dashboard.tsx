@@ -2,19 +2,19 @@
 
 import { usePessoaContext } from "@/contexts/pessoa-context";
 import { Api } from "@/lib/api";
-import { Cadeira } from "@/types/cadeira.type";
+import { Disciplina } from "@/types/disciplina.type";
 import { GraduationCap } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export function QuantidadeCadeiras() {
   const { pessoa } = usePessoaContext();
 
-  const [cadeiras, setCadeiras] = useState<Cadeira[]>([]);
+  const [cadeiras, setCadeiras] = useState<Disciplina[]>([]);
 
   useEffect(() => {
     const pegarCadeiras = async () => {
       if (pessoa?.idPessoa) {
-        const cadeiras = await Api.pegarCadeiras(pessoa?.idPessoa);
+        const cadeiras = await Api.pegarDisciplinas(pessoa?.idPessoa);
 
         if (cadeiras) {
           setCadeiras(cadeiras);

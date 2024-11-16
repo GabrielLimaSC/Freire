@@ -1,10 +1,6 @@
 "use client";
 
-import { usePessoaContext } from "@/contexts/pessoa-context";
-import { Api } from "@/lib/api";
-import { Cadeira } from "@/types/cadeira.type";
 import { Flame } from "lucide-react";
-import { useEffect, useState } from "react";
 import { BorderTrail } from "./motion-ui/border-trail";
 
 export function PresencaStreak() {

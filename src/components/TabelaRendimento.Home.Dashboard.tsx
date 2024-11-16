@@ -50,11 +50,11 @@ export function TabelaRendimento() {
       {};
 
     avaliacoes.forEach((avaliacao) => {
-      if (!mediaAvaliacoes[avaliacao.cadeira]) {
-        mediaAvaliacoes[avaliacao.cadeira] = { total: 0, count: 0 };
+      if (!mediaAvaliacoes[avaliacao.nome]) {
+        mediaAvaliacoes[avaliacao.nome] = { total: 0, count: 0 };
       }
-      mediaAvaliacoes[avaliacao.cadeira].total += avaliacao.nota;
-      mediaAvaliacoes[avaliacao.cadeira].count += 1;
+      mediaAvaliacoes[avaliacao.nome].total += avaliacao.nota;
+      mediaAvaliacoes[avaliacao.nome].count += 1;
     });
 
     return Object.keys(mediaAvaliacoes).map((cadeira) => ({

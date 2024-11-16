@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  FileText,
-  GalleryVerticalEnd,
-  Home,
-  Landmark,
-  Settings,
-} from "lucide-react";
+import { BookCopy, Home, Landmark, Settings } from "lucide-react";
 
 import {
   Sidebar,
@@ -19,8 +13,9 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { NavUser } from "./MenuPessoa.Sidebar.Dashboard";
+import { MenuPessoaSidebar } from "./MenuPessoa.Sidebar.Dashboard";
 import { useSidebarContext } from "@/contexts/sidebar-context";
 import { usePessoaContext } from "@/contexts/pessoa-context";
 export function SidebarDashboard() {
@@ -34,8 +29,8 @@ export function SidebarDashboard() {
       icon: Home,
     },
     {
-      title: "Avaliações",
-      icon: FileText,
+      title: "Disciplinas",
+      icon: BookCopy,
     },
     {
       title: "Financeiro",
@@ -55,7 +50,7 @@ export function SidebarDashboard() {
             <SidebarMenuButton size="lg" asChild>
               <div>
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <GalleryVerticalEnd className="size-4" />
+                  <SidebarTrigger />
                 </div>
                 <div className="flex flex-col gap-0.5 leading-none">
                   <span className="font-semibold">Freire App</span>
@@ -88,7 +83,7 @@ export function SidebarDashboard() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <NavUser
+        <MenuPessoaSidebar
           user={{
             role: pessoa?.tipo || "",
             name: pessoa?.nome || "",

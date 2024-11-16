@@ -1,10 +1,5 @@
 "use client";
-
-import { usePessoaContext } from "@/contexts/pessoa-context";
-import { Api } from "@/lib/api";
-import { Cadeira } from "@/types/cadeira.type";
-import { GraduationCap, Landmark } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Landmark } from "lucide-react";
 
 export function QuantidadeFaturas() {
   // const { pessoa } = usePessoaContext();

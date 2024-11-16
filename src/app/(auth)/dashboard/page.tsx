@@ -1,5 +1,6 @@
 "use client";
 
+import { DisciplinasDashboard } from "@/components/Disciplinas.Dashboard";
 import { HomeDashboard } from "@/components/Home.Dashboard";
 import { usePessoaContext } from "@/contexts/pessoa-context";
 import { useSidebarContext } from "@/contexts/sidebar-context";
@@ -24,6 +25,7 @@ export default function Dashboard() {
         <p>Seja bem-vindo(a) de volta, {pessoa?.nome.split(" ")[0]}!</p>
       </div>
       {selectedButton === "Home" && <HomeDashboard />}
+      {selectedButton === "Disciplinas" && <DisciplinasDashboard />}
     </div>
   );
 }

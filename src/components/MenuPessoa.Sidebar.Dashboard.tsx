@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/sidebar";
 import { logout } from "@/lib/auth";
 
-export function NavUser({
+export function MenuPessoaSidebar({
   user,
 }: {
   user: {

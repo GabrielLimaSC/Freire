@@ -2,7 +2,7 @@
 
 import { Alerta } from "@/components/Alerta";
 import { SidebarDashboard } from "@/components/SideBar.dashboard";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { PessoaContextProvider } from "@/contexts/pessoa-context";
 import { SidebarContextProvider } from "@/contexts/sidebar-context";
 
@@ -14,8 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <SidebarProvider>
           <SidebarDashboard />
           <main className="w-full transition-all">
-            <SidebarTrigger />
-            {children}
+            <div className="w-full overflow-y-auto">{children}</div>
           </main>
         </SidebarProvider>
       </SidebarContextProvider>

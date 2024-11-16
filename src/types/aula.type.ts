@@ -3,6 +3,6 @@ export interface Aula {
   hora_inicio: string;
   hora_fim: string;
   sala: string;
-  cadeira: string;
+  disciplina: string;
   id_professor: number;
 }

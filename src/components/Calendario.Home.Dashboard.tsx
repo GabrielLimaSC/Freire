@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BlockCalendarioDashboard } from "./Aula.Calendario.Home.Dashboard";
+import { AulaCalendario } from "./Aula.Calendario.Home.Dashboard";
 import { Api } from "@/lib/api";
 import { usePessoaContext } from "@/contexts/pessoa-context";
 import { Aula } from "@/types/aula.type";
@@ -72,9 +72,9 @@ export function CalendarioDashboard() {
           <Divisor className="border-muted-foreground" />
         </div>
         {aulas.map((aula) => (
-          <BlockCalendarioDashboard
-            key={aula.cadeira}
-            disciplina={aula.cadeira}
+          <AulaCalendario
+            key={aula.disciplina}
+            disciplina={aula.disciplina}
             horaInicio={aula.hora_inicio}
             horaFim={aula.hora_fim}
           />
