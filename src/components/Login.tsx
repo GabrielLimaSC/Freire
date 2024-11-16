@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
+import { LoaderCircle } from "lucide-react";
 
 interface LoginTipsProps {
   className?: string;
@@ -13,16 +14,24 @@ interface LoginTipsProps {
 export function Login({ className }: LoginTipsProps) {
   const [email, setEmail] = useState<string>("");
   const [senha, setSenha] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const entrar = async () => {
-    await login({ email, senha });
+    setLoading(true);
+    const resposta = await login({ email, senha });
     setEmail("");
     setSenha("");
+
+    if (resposta) {
+      setError(resposta.message);
+      setLoading(false);
+    }
   };
 
   return (
     <div
-      className={`rounded-md p-10 ${className} flex flex-col justify-center items-center`}
+      className={`rounded-md p-10 ${className} flex flex-col justify-center items-center animate-fade-left animate-once animate-ease-linear`}
     >
       <div className="w-2/4">
         <div className="mb-10 flex flex-col items-left">
@@ -32,6 +41,7 @@ export function Login({ className }: LoginTipsProps) {
           <p>Digite seu email e sua senha para continuar.</p>
         </div>
         <div className="w-full flex flex-col space-y-5">
+          {error && <h1 className="text-sm text-red-500">*{error}</h1>}
           <div className="space-y-2">
             <Label htmlFor="password">Email</Label>
             <Input
@@ -50,8 +60,12 @@ export function Login({ className }: LoginTipsProps) {
               type="password"
             />
           </div>
-          <Button onClick={entrar} className="w-full">
-            Login
+          <Button onClick={entrar} className="w-full" disabled={loading}>
+            {loading ? (
+              <LoaderCircle className="animate-spin text-muted" />
+            ) : (
+              "Entrar"
+            )}
           </Button>
         </div>
       </div>

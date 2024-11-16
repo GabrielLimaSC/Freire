@@ -17,7 +17,7 @@ export function LoginTips({ className }: LoginTipsProps) {
               Gestão eficiente, futuro brilhante. Simplifique hoje para alcançar
               o amanhã.
             </h1>
-            <p className="text-zinc-300">
+            <p className="text-muted-foreground">
               Uma plataforma inteligente para gestão acadêmica: organize e
               acompanhe o desempenho de estudantes, professores e coordenadores
               com eficiência, simplificando a administração universitária.
