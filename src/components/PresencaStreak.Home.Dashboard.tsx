@@ -5,6 +5,7 @@ import { Api } from "@/lib/api";
 import { Cadeira } from "@/types/cadeira.type";
 import { Flame } from "lucide-react";
 import { useEffect, useState } from "react";
+import { BorderTrail } from "./motion-ui/border-trail";
 
 export function PresencaStreak() {
   // const { pessoa } = usePessoaContext();
@@ -25,8 +26,15 @@ export function PresencaStreak() {
   // }, [pessoa?.idPessoa]);
 
   return (
-    <div className="p-3 flex justify-center items-center border rounded-xl space-x-5 w-fit card-shine-effect">
-      <div className="rounded-xl bg-orange-600 p-2 text-xl ">
+    <div className="relative p-3 flex justify-center items-center border rounded-xl space-x-5 w-fit card-shine-effect">
+      <BorderTrail
+        style={{
+          boxShadow:
+            "0px 0px 60px 30px rgb(255 255 255 / 50%), 0 0 100px 60px rgb(0 0 0 / 50%), 0 0 140px 90px rgb(0 0 0 / 50%)",
+        }}
+        size={100}
+      />
+      <div className="rounded-xl bg-orange-600 p-2 text-xl">
         <Flame size={"2rem"} />
       </div>
       <div>
