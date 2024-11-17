@@ -1,8 +1,11 @@
+"use server";
+
 import OpenAI from "openai";
-import { Dispatch, SetStateAction } from "react";
+
+const key = process.env.OPENAI_API_KEY;
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: key,
 });
 
 export async function MandarMensagem(mensagem: string) {
