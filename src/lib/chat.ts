@@ -2,9 +2,7 @@ import OpenAI from "openai";
 import { Dispatch, SetStateAction } from "react";
 
 const openai = new OpenAI({
-  apiKey:
-    "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",
-  dangerouslyAllowBrowser: true,
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 export async function MandarMensagem(mensagem: string) {
