@@ -4,7 +4,7 @@ import { usePessoaContext } from "@/contexts/pessoa-context";
 import { Api } from "@/lib/api";
 import { Disciplina } from "@/types/disciplina.type";
 import { Pessoa } from "@/types/pessoa.type";
-import { LoaderCircle } from "lucide-react";
+import { Loader, LoaderCircle } from "lucide-react";
 
 interface Props {
   className?: string;
@@ -36,7 +36,7 @@ export function DisciplinasDashboard({ className, pessoa }: Props) {
   if (disciplinas?.length === 0) {
     return (
       <div className="w-full h-full flex justify-center items-center">
-        <LoaderCircle size={"5rem"} className="animate-spin text-muted" />
+        <Loader size={"2rem"} className="animate-spin text-muted" />
       </div>
     );
   }

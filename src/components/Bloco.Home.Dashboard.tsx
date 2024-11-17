@@ -23,7 +23,7 @@ export function BlocoDashboard({
       <div className="rounded-xl bg-blue-600 p-2 text-xl">
         <Icone size="2rem" />
       </div>
-      <div>
+      <div className="whitespace-nowrap">
         <h1 className="text-2xl font-bold">{titulo}</h1>
         <p className="text-sm text-muted-foreground">{descricacao}</p>
       </div>

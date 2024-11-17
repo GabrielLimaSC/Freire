@@ -37,7 +37,7 @@ export function PresencaStreak({ className, pessoa }: Props) {
       <div className="rounded-xl bg-orange-600 p-2 text-xl">
         <Flame size={"2rem"} />
       </div>
-      <div>
+      <div className="whitespace-nowrap">
         <h1 className="text-2xl font-bold">{streak}</h1>
         <p className="text-sm text-muted-foreground">Sequência de presenças</p>
       </div>

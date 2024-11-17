@@ -9,7 +9,9 @@ import {
   BookCheck,
   BookOpenCheck,
   GraduationCap,
+  Loader,
   LoaderCircle,
+  Sparkles,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Disciplina } from "@/types/disciplina.type";
@@ -25,7 +27,7 @@ export function HomeDashboard({ className, pessoa }: Props) {
   if (!pessoa) {
     return (
       <div className="w-full h-full flex justify-center items-center">
-        <LoaderCircle size={"5rem"} className="animate-spin text-muted" />
+        <Loader size={"2rem"} className="animate-spin text-muted" />
       </div>
     );
   }
@@ -51,7 +53,7 @@ export function HomeDashboard({ className, pessoa }: Props) {
       <div className={`${className} w-full`}>
         <div className="w-full flex space-x-5">
           <div className="space-y-5 w-full">
-            <div className="flex justify-between items-center space-x-2">
+            <div className="flex items-center space-x-5">
               <BlocoDashboard
                 Icone={GraduationCap}
                 titulo={22}
@@ -79,7 +81,7 @@ export function HomeDashboard({ className, pessoa }: Props) {
       <div className={`${className} w-full`}>
         <div className="w-full flex space-x-5">
           <div className="space-y-5 w-full">
-            <div className="flex justify-between items-center ">
+            <div className="flex justify-between items-center space-x-5">
               <BlocoDashboard
                 Icone={GraduationCap}
                 titulo={cadeiras.length}

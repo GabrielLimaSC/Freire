@@ -5,7 +5,7 @@ import { FinanceiroDashboard } from "@/components/Financeiro.Dashboard";
 import { HomeDashboard } from "@/components/Home.Dashboard";
 import { usePessoaContext } from "@/contexts/pessoa-context";
 import { useSidebarContext } from "@/contexts/sidebar-context";
-import { LoaderCircle } from "lucide-react";
+import { Loader, LoaderCircle } from "lucide-react";
 
 export default function Dashboard() {
   const { selectedButton } = useSidebarContext();
@@ -14,7 +14,7 @@ export default function Dashboard() {
   if (!pessoa) {
     return (
       <div className="w-full h-full flex justify-center items-center">
-        <LoaderCircle size={"5rem"} className="animate-spin text-muted" />
+        <Loader size={"2rem"} className="animate-spin text-muted" />
       </div>
     );
   }

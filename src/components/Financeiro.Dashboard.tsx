@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Api } from "@/lib/api";
 import { Pessoa } from "@/types/pessoa.type";
-import { LoaderCircle } from "lucide-react";
+import { Loader, LoaderCircle } from "lucide-react";
 import { Fatura } from "@/types/fatura.type";
 import { FaturaFinanceiro } from "./Fatura.Financeiro.Dashboard";
 
@@ -40,7 +40,7 @@ export function FinanceiroDashboard({ className, pessoa }: Props) {
   if (faturas?.length === 0) {
     return (
       <div className="w-full h-full flex justify-center items-center">
-        <LoaderCircle size={"5rem"} className="animate-spin text-muted" />
+        <Loader size={"2rem"} className="animate-spin text-muted" />
       </div>
     );
   }
