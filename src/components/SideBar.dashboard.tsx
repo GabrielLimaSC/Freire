@@ -23,7 +23,7 @@ export function SidebarDashboard() {
 
   const { pessoa } = usePessoaContext();
 
-  const items = [
+  let items = [
     {
       title: "Home",
       icon: Home,
@@ -41,6 +41,23 @@ export function SidebarDashboard() {
       icon: Settings,
     },
   ];
+
+  if (pessoa?.tipo === "professor") {
+    items = [
+      {
+        title: "Home",
+        icon: Home,
+      },
+      {
+        title: "Disciplinas",
+        icon: BookCopy,
+      },
+      {
+        title: "Configurações",
+        icon: Settings,
+      },
+    ];
+  }
 
   return (
     <Sidebar collapsible="icon">

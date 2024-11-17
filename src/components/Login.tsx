@@ -6,6 +6,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
 import { LoaderCircle } from "lucide-react";
+import { TextEffect } from "./motion-ui/text-effect";
 
 interface LoginTipsProps {
   className?: string;
@@ -35,10 +36,16 @@ export function Login({ className }: LoginTipsProps) {
     >
       <div className="w-2/4">
         <div className="mb-10 flex flex-col items-left">
-          <h1 className="text-3xl font-semibold mb-2">
+          <TextEffect
+            per="char"
+            preset="blur"
+            className="text-3xl font-semibold mb-2"
+          >
             Seja bem-vindo(a) de volta
-          </h1>
-          <p>Digite seu email e sua senha para continuar.</p>
+          </TextEffect>
+          <TextEffect per="char" preset="blur" className="">
+            Digite seu email e sua senha para continuar.
+          </TextEffect>
         </div>
         <div className="w-full flex flex-col space-y-5">
           {error && <h1 className="text-sm text-red-500">*{error}</h1>}

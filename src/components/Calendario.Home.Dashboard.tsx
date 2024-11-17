@@ -6,10 +6,14 @@ import { Api } from "@/lib/api";
 import { usePessoaContext } from "@/contexts/pessoa-context";
 import { Aula } from "@/types/aula.type";
 import { Divisor } from "./ui/Divisor";
+import { Pessoa } from "@/types/pessoa.type";
 
-export function CalendarioDashboard() {
-  const { pessoa } = usePessoaContext();
+interface Props {
+  className?: string;
+  pessoa: Pessoa;
+}
 
+export function CalendarioDashboard({ className, pessoa }: Props) {
   const data = {
     dia: new Date().getUTCDate(),
     mes: new Date().getUTCMonth(),
@@ -47,20 +51,18 @@ export function CalendarioDashboard() {
 
   useEffect(() => {
     const pegarAulas = async () => {
-      if (pessoa?.idPessoa) {
-        const aulas = await Api.pegarAulasDoDia(pessoa?.idPessoa);
+      const aulas = await Api.pegarAulasDoDia(pessoa.idPessoa);
 
-        if (aulas) {
-          setAulas(aulas);
-        }
+      if (aulas) {
+        setAulas(aulas);
       }
     };
 
     pegarAulas();
-  }, [pessoa?.idPessoa]);
+  }, []);
 
   return (
-    <div className="flex w-full border rounded-xl p-5">
+    <div className="flex w-full border rounded-xl p-5 h-fit">
       <div className="flex flex-col space-y-5 w-full">
         <div>
           <h1 className="text-xl font-semibold">
@@ -75,8 +77,10 @@ export function CalendarioDashboard() {
           <AulaCalendario
             key={aula.disciplina}
             disciplina={aula.disciplina}
+            sala={aula.sala}
             horaInicio={aula.hora_inicio}
             horaFim={aula.hora_fim}
+            professor={aula.professor}
           />
         ))}
       </div>

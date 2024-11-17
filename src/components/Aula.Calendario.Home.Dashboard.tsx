@@ -1,22 +1,45 @@
-import { BookText } from "lucide-react";
+import { BookText, Clock2, GraduationCap, Shapes } from "lucide-react";
 
 interface Props {
   disciplina: string;
+  sala: string;
+  professor: string;
   horaInicio: string;
   horaFim: string;
 }
 
-export function AulaCalendario({ disciplina, horaInicio, horaFim }: Props) {
+export function AulaCalendario({
+  disciplina,
+  horaInicio,
+  horaFim,
+  sala,
+  professor,
+}: Props) {
   return (
     <div className="p-3 flex justify-start items-center border rounded-xl space-x-5 w-full">
       <div className="rounded-xl bg-blue-600 p-2 text-xl">
         <BookText />
       </div>
-      <div>
+      <div className="w-full">
         <h1 className="font-bold">{disciplina}</h1>
-        <p className="text-sm text-muted-foreground">
-          {horaInicio} - {horaFim}
-        </p>
+        <div className="flex space-x-5 w-full">
+          <div className="flex justify-center items-center space-x-1">
+            <Clock2 size={"1rem"} />
+            <p className="text-sm text-muted-foreground flex">
+              {horaInicio} - {horaFim}
+            </p>
+          </div>
+          <div className="flex justify-center items-center space-x-1">
+            <Shapes size={"1rem"} />
+            <p className="text-sm text-muted-foreground flex">Sala {sala}</p>
+          </div>
+          <div className="flex justify-center items-center space-x-1">
+            <GraduationCap size={"1rem"} />
+            <p className="text-sm text-muted-foreground flex">
+              Prof. {professor}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

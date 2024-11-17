@@ -4,6 +4,9 @@ import { Avaliacao } from "@/types/avaliacao.type";
 import { Disciplina } from "@/types/disciplina.type";
 import { Fatura } from "@/types/fatura.type";
 import { Falta } from "@/types/faltas.type";
+import { Streak } from "@/types/streak.type";
+import { Rendimento } from "@/types/rendimento.type";
+import { qntdAlunos } from "@/types/qntdAlunos.type";
 
 export class Api {
   private static readonly baseUrl = "https://api.freire.app/api";
@@ -44,6 +47,42 @@ export class Api {
     }
   }
 
+  static async pegarStreakAluno(id: number): Promise<Streak | null> {
+    try {
+      const response = await axios.get<Streak>(
+        this.baseUrl + `/aluno/${id}/streak`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Resposta da API recebida:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar aulas:", error);
+      return null;
+    }
+  }
+
+  static async pegarRendimentoAluno(id: number): Promise<Rendimento | null> {
+    try {
+      const response = await axios.get<Rendimento>(
+        this.baseUrl + `/aluno/${id}/rendimento`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Resposta da API recebida:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar aulas:", error);
+      return null;
+    }
+  }
+
   static async pegarDisciplinas(id: number): Promise<Disciplina[] | null> {
     try {
       const response = await axios.get<Disciplina[]>(
@@ -54,7 +93,7 @@ export class Api {
           },
         }
       );
-      console.log("Resposta da API recebida:", response.data);
+      console.log("PEGAR DISCIPLINAS Resposta da API recebida:", response.data);
       return response.data;
     } catch (error) {
       console.error("Erro ao buscar aulas:", error);
@@ -102,6 +141,68 @@ export class Api {
     try {
       const response = await axios.get<Avaliacao[]>(
         this.baseUrl + `/aluno/${id}/avaliacao`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Resposta da API recebida:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar aulas:", error);
+      return null;
+    }
+  }
+
+  static async pegarAvaliacoesPorIdDaDisciplina(
+    idAluno: number,
+    idDisciplina: number
+  ): Promise<Avaliacao[] | null> {
+    try {
+      const response = await axios.get<Avaliacao[]>(
+        this.baseUrl + `/aluno/${idAluno}/avaliacao/${idDisciplina}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Resposta da API recebida:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar aulas:", error);
+      return null;
+    }
+  }
+
+  static async pegarFaltasPorIdDaDisciplina(
+    idAluno: number,
+    idDisciplina: number
+  ): Promise<Falta | null> {
+    try {
+      const response = await axios.get<Falta>(
+        this.baseUrl + `/aluno/${idAluno}/faltas/${idDisciplina}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Resposta da API recebida:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar aulas:", error);
+      return null;
+    }
+  }
+
+  static async pegarQntdAlunosPorIdDaDisciplina(
+    idProfessor: number
+  ): Promise<qntdAlunos | null> {
+    try {
+      const response = await axios.get<qntdAlunos>(
+        this.baseUrl + `/professor/${idProfessor}/qtd-alunos`,
         {
           headers: {
             "Content-Type": "application/json",

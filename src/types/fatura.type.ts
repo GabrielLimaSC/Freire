@@ -1,9 +1,6 @@
 export interface Fatura {
-  dia_aula: string;
-  hora_inicio: Date;
-  hora_fim: Date;
-  sala: string;
-  nome: string;
-  nome_professor: string;
-  id_professor: number;
+  id_pagamento: number;
+  data_pagamento: string;
+  valor: number;
+  status: boolean;
 }

@@ -16,9 +16,9 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { useEffect, useState } from "react";
-import { usePessoaContext } from "@/contexts/pessoa-context";
 import { Api } from "@/lib/api";
 import { Avaliacao } from "@/types/avaliacao.type";
+import { Pessoa } from "@/types/pessoa.type";
 
 const chartConfig = {
   desktop: {
@@ -27,23 +27,25 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function TabelaRendimento() {
-  const { pessoa } = usePessoaContext();
+interface Props {
+  className?: string;
+  pessoa: Pessoa;
+}
+
+export function TabelaRendimento({ className, pessoa }: Props) {
   const [avaliacoes, setAvaliacoes] = useState<Avaliacao[]>([]);
 
   useEffect(() => {
     const pegarAvaliacoes = async () => {
-      if (pessoa?.idPessoa) {
-        const avaliacoes = await Api.pegarAvaliacoes(pessoa?.idPessoa);
+      const avaliacoes = await Api.pegarAvaliacoes(pessoa.idPessoa);
 
-        if (avaliacoes) {
-          setAvaliacoes(avaliacoes);
-        }
+      if (avaliacoes) {
+        setAvaliacoes(avaliacoes);
       }
     };
 
     pegarAvaliacoes();
-  }, [pessoa?.idPessoa]);
+  }, []);
 
   const calcularMediaAvaliacoes = (avaliacoes: Avaliacao[]) => {
     const mediaAvaliacoes: { [key: string]: { total: number; count: number } } =

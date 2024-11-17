@@ -2,24 +2,28 @@
 
 import { Flame } from "lucide-react";
 import { BorderTrail } from "./motion-ui/border-trail";
+import { useEffect, useState } from "react";
+import { Api } from "@/lib/api";
+import { Pessoa } from "@/types/pessoa.type";
 
-export function PresencaStreak() {
-  // const { pessoa } = usePessoaContext();
+interface Props {
+  className?: string;
+  pessoa: Pessoa;
+}
 
-  // const [presencas, setPresencas] = useState<Cadeira[]>([]);
+export function PresencaStreak({ className, pessoa }: Props) {
+  const [streak, setStreak] = useState<number>(0);
 
-  // useEffect(() => {
-  //   const pegarCadeiras = async () => {
-  //     if (pessoa?.idPessoa) {
-  //       const cadeiras = await Api.pegarCadeiras(pessoa?.idPessoa);
+  useEffect(() => {
+    const pegarCadeiras = async () => {
+      const streak = await Api.pegarStreakAluno(pessoa.idPessoa);
 
-  //       if (cadeiras) {
-  //         setCadeiras(cadeiras);
-  //       }
-  //     }
-  //   };
-  //   pegarCadeiras();
-  // }, [pessoa?.idPessoa]);
+      if (streak) {
+        setStreak(streak.streak_atual);
+      }
+    };
+    pegarCadeiras();
+  }, []);
 
   return (
     <div className="relative p-3 flex justify-center items-center border rounded-xl space-x-5 w-fit card-shine-effect">
@@ -34,7 +38,7 @@ export function PresencaStreak() {
         <Flame size={"2rem"} />
       </div>
       <div>
-        <h1 className="text-2xl font-bold">23</h1>
+        <h1 className="text-2xl font-bold">{streak}</h1>
         <p className="text-sm text-muted-foreground">Sequência de presenças</p>
       </div>
     </div>

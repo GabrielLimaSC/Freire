@@ -4,7 +4,7 @@ export interface Disciplina {
   hora_fim: Date;
   sala: string;
   disciplina: string;
-  nome_professor: string;
+  professor: string;
   id_professor: number;
   id_disciplina: number;
 }

@@ -13,9 +13,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <SidebarContextProvider>
         <SidebarProvider>
           <SidebarDashboard />
-          <main className="w-full transition-all">
-            <div className="w-full overflow-y-auto">{children}</div>
-          </main>
+          <main className="w-full transition-all">{children}</main>
         </SidebarProvider>
       </SidebarContextProvider>
     </PessoaContextProvider>

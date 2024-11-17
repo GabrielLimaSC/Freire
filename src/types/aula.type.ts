@@ -5,4 +5,5 @@ export interface Aula {
   sala: string;
   disciplina: string;
   id_professor: number;
+  professor: string;
 }

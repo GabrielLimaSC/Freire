@@ -1,23 +1,27 @@
 "use client";
+import { Api } from "@/lib/api";
+import { Pessoa } from "@/types/pessoa.type";
 import { Landmark } from "lucide-react";
+import { useEffect, useState } from "react";
 
-export function QuantidadeFaturas() {
-  // const { pessoa } = usePessoaContext();
+interface Props {
+  className?: string;
+  pessoa: Pessoa;
+}
 
-  // const [cadeiras, setCadeiras] = useState<Cadeira[]>([]);
+export function QuantidadeFaturas({ className, pessoa }: Props) {
+  const [faturas, setFaturas] = useState<number>(0);
 
-  // useEffect(() => {
-  //   const pegarCadeiras = async () => {
-  //     if (pessoa?.idPessoa) {
-  //       const cadeiras = await Api.pegarCadeiras(pessoa?.idPessoa);
+  useEffect(() => {
+    const pegarFaturas = async () => {
+      const data = await Api.pegarFaturas(pessoa.idPessoa);
 
-  //       if (cadeiras) {
-  //         setCadeiras(cadeiras);
-  //       }
-  //     }
-  //   };
-  //   pegarCadeiras();
-  // }, [pessoa?.idPessoa]);
+      if (data) {
+        setFaturas(data.length);
+      }
+    };
+    pegarFaturas();
+  }, []);
 
   return (
     <div className="p-3 flex justify-center items-center border rounded-xl space-x-5 w-fit">

@@ -1,51 +1,117 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Button } from "./ui/button";
-import { GraduationCap } from "lucide-react";
+import { ChevronDown, GraduationCap } from "lucide-react";
 import { Divisor } from "./ui/Divisor";
-import { GraficoNotas } from "./GraficoNotas.DisciplinaMatriculada.Disciplinas.Dashboard";
+import { RelatorioNotas } from "./RelatorioNotas.DisciplinaMatriculada.Disciplinas.Dashboard";
+import { AtributoDisciplinaMatriculada } from "./Atributo.DisciplinaMatriculada.Disciplinas.Dashboard";
+import { Avaliacao } from "@/types/avaliacao.type";
+import { Api } from "@/lib/api";
+import { Falta } from "@/types/faltas.type";
 
 interface Props {
   className?: string;
+  nomeDisciplina: string;
+  nomeProfessor: string;
+  idDisciplina: number;
+  idPessoa: number | undefined;
 }
 
-export function DisciplinaMatriculada({ className }: Props) {
+export function DisciplinaMatriculada({
+  className,
+  nomeDisciplina,
+  nomeProfessor,
+  idDisciplina,
+  idPessoa,
+}: Props) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const toggle = () => {
     setIsExpanded(!isExpanded);
   };
+
+  const [avaliacoes, setAvaliacoes] = useState<Avaliacao[] | null>([]);
+  const [media, setMedia] = useState<number>(0);
+  const [qntdFaltas, setQntdFaltas] = useState<number>(0);
+
+  useEffect(() => {
+    const fetchAvaliacoes = async () => {
+      if (idPessoa) {
+        const retornoAvaliacoes = await Api.pegarAvaliacoesPorIdDaDisciplina(
+          idPessoa,
+          idDisciplina
+        );
+
+        const retornoFaltas = await Api.pegarFaltasPorIdDaDisciplina(
+          idPessoa,
+          idDisciplina
+        );
+
+        if (retornoAvaliacoes && retornoFaltas) {
+          setAvaliacoes(retornoAvaliacoes);
+
+          let soma = 0;
+          retornoAvaliacoes.forEach((avaliacao) => {
+            soma += avaliacao.nota;
+          });
+          const media = soma / retornoAvaliacoes.length;
+
+          setQntdFaltas(retornoFaltas.faltas);
+          setMedia(media);
+        }
+      }
+    };
+
+    fetchAvaliacoes();
+  }, []);
 
   return (
     <div className={`${className} w-full`}>
       <div className="w-full border rounded-xl py-10 px-12">
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-semibold">Banco de dados</h1>
+            <h1 className="text-2xl font-semibold">{nomeDisciplina}</h1>
             <div className="flex justify-start items-center space-x-1">
               <GraduationCap className="text-muted-foreground" size={"1rem"} />
               <h1 className="text-sm text-muted-foreground">
-                Prof. José Carlos
+                Prof. {nomeProfessor}
               </h1>
             </div>
           </div>
           <div></div>
           <Button onClick={toggle} variant={"outline"}>
-            {isExpanded ? "Ocultar" : "Ver mais"}
+            <ChevronDown
+              className={
+                isExpanded
+                  ? "transition-all duration-500 ease-in-out rotate-180"
+                  : "transition-all duration-500 ease-in-out"
+              }
+            />
           </Button>
         </div>
         <div
-          className={`overflow-hidden transition-max-height duration-500 ease-in-out flex flex-col space-y-10 ${
-            isExpanded ? "max-h-96 mt-5 opacity-100" : "max-h-0 opacity-0"
-          }`}
+          ref={contentRef}
+          className="overflow-hidden transition-all duration-500 ease-in-out"
+          style={{
+            height: isExpanded
+              ? `${contentRef.current?.scrollHeight}px`
+              : "0px",
+            opacity: isExpanded ? 1 : 0,
+          }}
         >
-          <Divisor />
-          <div className="flex justify-between">
-            <div className="border rounded-xl p-6 flex flex-col justify-between">
-              <h1 className="text-lg">Média: 10</h1>
-              <h1 className="text-lg">Faltas: 10</h1>
-              <h1 className="text-lg">Média: 10</h1>
+          <Divisor className="mt-5 mb-5" />
+          <div className="flex justify-start space-x-5">
+            <div className="flex flex-col space-y-5">
+              <AtributoDisciplinaMatriculada
+                titulo={qntdFaltas}
+                descricao="Quantidade de faltas"
+              />
+              <AtributoDisciplinaMatriculada
+                titulo={media}
+                descricao="Sua média geral"
+              />
             </div>
-            <GraficoNotas />
+            <RelatorioNotas avaliacoes={avaliacoes} />
           </div>
         </div>
       </div>
