@@ -9,7 +9,7 @@ interface Props {
   pessoa: Pessoa;
 }
 
-export function QuantidadeFaturas({ className, pessoa }: Props) {
+export function QuantidadeFaturas({ pessoa }: Props) {
   const [faturas, setFaturas] = useState<number>(0);
 
   useEffect(() => {

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Aula } from "@/types/aula.type";
 import { Avaliacao } from "@/types/avaliacao.type";
 import { Disciplina } from "@/types/disciplina.type";
 import { Fatura } from "@/types/fatura.type";

@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react";
 import { AulaCalendario } from "./Aula.Calendario.Home.Dashboard";
 import { Api } from "@/lib/api";
-import { usePessoaContext } from "@/contexts/pessoa-context";
-import { Aula } from "@/types/aula.type";
 import { Divisor } from "./ui/Divisor";
 import { Pessoa } from "@/types/pessoa.type";
 import { Agenda } from "@/types/agenda.type";
@@ -14,7 +12,7 @@ interface Props {
   pessoa: Pessoa;
 }
 
-export function CalendarioDashboard({ className, pessoa }: Props) {
+export function CalendarioDashboard({ pessoa }: Props) {
   const data = {
     dia: new Date().getUTCDate(),
     mes: new Date().getUTCMonth(),
@@ -60,7 +58,7 @@ export function CalendarioDashboard({ className, pessoa }: Props) {
     };
 
     pegarAulas();
-  }, []);
+  }, [pessoa.idPessoa]);
 
   return (
     <div className="flex w-full border rounded-xl p-5 h-fit">

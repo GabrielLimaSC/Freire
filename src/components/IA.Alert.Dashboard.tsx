@@ -7,6 +7,7 @@ import { Button } from "./ui/button";
 import { TextShimmer } from "./motion-ui/text-shimmer";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { Mensagem } from "@/types/mensagem.type";
 
 export function IaAlert() {
   const [messages, setMessages] = useState<Mensagem[]>([]);

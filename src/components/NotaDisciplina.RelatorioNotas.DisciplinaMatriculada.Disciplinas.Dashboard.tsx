@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { ChartConfig } from "@/components/ui/chart";
-import { CircleDashed, MessageSquareReply } from "lucide-react";
+import { MessageSquareReply } from "lucide-react";
 import { Avaliacao } from "@/types/avaliacao.type";
 
 interface Props {

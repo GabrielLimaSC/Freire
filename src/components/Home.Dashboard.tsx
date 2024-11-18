@@ -24,14 +24,6 @@ interface Props {
 }
 
 export function HomeDashboard({ className, pessoa }: Props) {
-  if (!pessoa) {
-    return (
-      <div className="w-full h-full flex justify-center items-center">
-        <Loader size={"2rem"} className="animate-spin text-muted" />
-      </div>
-    );
-  }
-
   const [cadeiras, setCadeiras] = useState<Disciplina[]>([]);
   const [faturas, setFaturas] = useState<number>(0);
   const [alunos, setAlunos] = useState<number>(0);
@@ -63,6 +55,14 @@ export function HomeDashboard({ className, pessoa }: Props) {
       pegarProfessor();
     }
   }, []);
+
+  if (!pessoa) {
+    return (
+      <div className="w-full h-full flex justify-center items-center">
+        <Loader size={"2rem"} className="animate-spin text-muted" />
+      </div>
+    );
+  }
 
   if (pessoa.tipo === "professor") {
     return (
