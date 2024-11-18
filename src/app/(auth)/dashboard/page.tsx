@@ -5,7 +5,7 @@ import { FinanceiroDashboard } from "@/components/Financeiro.Dashboard";
 import { HomeDashboard } from "@/components/Home.Dashboard";
 import { usePessoaContext } from "@/contexts/pessoa-context";
 import { useSidebarContext } from "@/contexts/sidebar-context";
-import { Loader, LoaderCircle } from "lucide-react";
+import { Loader } from "lucide-react";
 
 export default function Dashboard() {
   const { selectedButton } = useSidebarContext();
@@ -20,7 +20,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="p-10 w-full space-y-5 animate-fade animate-once animate-duration-5000 animate-ease-in-out">
+    <div className="p-10 w-full space-y-5">
       <div>
         <h1 className="text-2xl font-bold">{selectedButton}</h1>
         <p>Seja bem-vindo(a) de volta, {pessoa?.nome.split(" ")[0]}!</p>

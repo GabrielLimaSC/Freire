@@ -3,7 +3,8 @@ import { BookText, Clock2, GraduationCap, Shapes } from "lucide-react";
 interface Props {
   disciplina: string;
   sala: string;
-  professor: string;
+  professor?: string;
+  isProva: boolean;
   horaInicio: string;
   horaFim: string;
 }
@@ -13,11 +14,16 @@ export function AulaCalendario({
   horaInicio,
   horaFim,
   sala,
+  isProva,
   professor,
 }: Props) {
   return (
     <div className="p-3 flex justify-start items-center border rounded-xl space-x-5 w-full">
-      <div className="rounded-xl bg-blue-600 p-2 text-xl">
+      <div
+        className={`rounded-xl ${
+          isProva ? "bg-blue-600" : "bg-red-600"
+        } p-2 text-xl`}
+      >
         <BookText />
       </div>
       <div className="w-full">

@@ -54,26 +54,33 @@ export function IaAlert() {
   };
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: "instant" });
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      sendMessage();
+    }
   };
 
   return (
-    <div className="relative w-full border bg-blue-600 p-6 rounded-xl">
+    <div className="relative w-full border p-6 rounded-xl">
       <h1 className="text-2xl font-semibold font-mono">Freire.AI</h1>
-      <div className="flex flex-col w-full space-y-2 mt-5 overflow-auto max-h-96 p-5">
+      <div className="flex flex-col w-full space-y-2 mt-5 overflow-auto max-h-96 p-5 bg-muted rounded-xl shadow-inner">
         {messages.map(
           (msg, index) =>
             (msg.role === "ia" && (
               <div key={index} className="flex space-x-2">
-                <div className="rounded-xl p-2 bg-muted border border-white/10 shadow-md h-fit">
+                <div className="rounded-xl p-2 bg-blue-600 border border-white/10 shadow-md h-fit">
                   <Sparkles size="1rem" />
                 </div>
                 <h1 className="text-sm border bg-muted rounded-xl border-white/10 p-2 shadow-md">
                   <ReactMarkdown
-                    children={msg.content}
                     remarkPlugins={[remarkGfm]}
                     className="prose prose-sm"
-                  />
+                  >
+                    {msg.content}
+                  </ReactMarkdown>
                 </h1>
               </div>
             )) ||
@@ -81,10 +88,11 @@ export function IaAlert() {
               <div key={index} className="flex space-x-2 justify-end">
                 <h1 className="text-sm border bg-muted rounded-xl border-white/10 p-2 shadow-md ">
                   <ReactMarkdown
-                    children={msg.content}
                     remarkPlugins={[remarkGfm]}
                     className="prose prose-sm"
-                  />
+                  >
+                    {msg.content}
+                  </ReactMarkdown>
                 </h1>
               </div>
             ))
@@ -109,6 +117,7 @@ export function IaAlert() {
           value={message}
           className="bg-muted border-white/10"
           placeholder="Fale com o freire.ai"
+          onKeyDown={handleKeyDown}
         />
         <Button variant={"secondary"} onClick={sendMessage}>
           Enviar

@@ -7,6 +7,7 @@ import { usePessoaContext } from "@/contexts/pessoa-context";
 import { Aula } from "@/types/aula.type";
 import { Divisor } from "./ui/Divisor";
 import { Pessoa } from "@/types/pessoa.type";
+import { Agenda } from "@/types/agenda.type";
 
 interface Props {
   className?: string;
@@ -47,11 +48,11 @@ export function CalendarioDashboard({ className, pessoa }: Props) {
   const diaSemanaNome = diasSemana[data.diaSemana];
   const mesNome = meses[data.mes];
 
-  const [aulas, setAulas] = useState<Aula[]>([]);
+  const [aulas, setAulas] = useState<Agenda[]>([]);
 
   useEffect(() => {
     const pegarAulas = async () => {
-      const aulas = await Api.pegarAulasDoDia(pessoa.idPessoa);
+      const aulas = await Api.pegarAgendaPessoa(pessoa.idPessoa);
 
       if (aulas) {
         setAulas(aulas);
@@ -75,12 +76,13 @@ export function CalendarioDashboard({ className, pessoa }: Props) {
         </div>
         {aulas.map((aula) => (
           <AulaCalendario
+            isProva={aula.is_prova}
             key={aula.disciplina}
             disciplina={aula.disciplina}
             sala={aula.sala}
             horaInicio={aula.hora_inicio}
             horaFim={aula.hora_fim}
-            professor={aula.professor}
+            professor={aula.nome_professor}
           />
         ))}
       </div>

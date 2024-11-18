@@ -7,8 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ChartConfig } from "@/components/ui/chart";
-import { CircleDashed, MessageSquareReply } from "lucide-react";
 import { Avaliacao } from "@/types/avaliacao.type";
 import { NotaDisciplina } from "./NotaDisciplina.RelatorioNotas.DisciplinaMatriculada.Disciplinas.Dashboard";
 

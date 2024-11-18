@@ -34,9 +34,10 @@ export function HomeDashboard({ className, pessoa }: Props) {
 
   const [cadeiras, setCadeiras] = useState<Disciplina[]>([]);
   const [faturas, setFaturas] = useState<number>(0);
+  const [alunos, setAlunos] = useState<number>(0);
 
   useEffect(() => {
-    const pegarCadeiras = async () => {
+    const pegarAluno = async () => {
       const cadeiras = await Api.pegarDisciplinas(pessoa?.idPessoa);
       const faturas = await Api.pegarFaturas(pessoa.idPessoa);
 
@@ -45,7 +46,22 @@ export function HomeDashboard({ className, pessoa }: Props) {
         setFaturas(faturas.length);
       }
     };
-    pegarCadeiras();
+
+    const pegarProfessor = async () => {
+      const alunos = await Api.pegarQntdAlunos(pessoa?.idPessoa);
+
+      if (alunos) {
+        setAlunos(alunos.quantidade_alunos);
+      }
+    };
+
+    const pegarFuncionario = async () => {};
+
+    if (pessoa.tipo === "aluno") {
+      pegarAluno();
+    } else if (pessoa.tipo === "professor") {
+      pegarProfessor();
+    }
   }, []);
 
   if (pessoa.tipo === "professor") {
@@ -56,7 +72,7 @@ export function HomeDashboard({ className, pessoa }: Props) {
             <div className="flex items-center space-x-5">
               <BlocoDashboard
                 Icone={GraduationCap}
-                titulo={22}
+                titulo={alunos}
                 descricacao="Estudantes"
               />
               <BlocoDashboard

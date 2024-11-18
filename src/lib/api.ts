@@ -7,6 +7,11 @@ import { Falta } from "@/types/faltas.type";
 import { Streak } from "@/types/streak.type";
 import { Rendimento } from "@/types/rendimento.type";
 import { qntdAlunos } from "@/types/qntdAlunos.type";
+import { DisciplinaMinistrada } from "@/types/disciplinaMinistrada.type";
+import { AvaliacaoCriada } from "@/types/avaliacaoCriada.type";
+import { ResultadoAvaliacao } from "@/types/resultadoAvaliacao.type";
+import { AlunoMatriculado } from "@/types/alunoMatriculado.type";
+import { Agenda } from "@/types/agenda.type";
 
 export class Api {
   private static readonly baseUrl = "https://api.freire.app/api";
@@ -29,10 +34,10 @@ export class Api {
     }
   }
 
-  static async pegarAulasDoDia(id: number): Promise<Aula[] | null> {
+  static async pegarAgendaPessoa(id: number): Promise<Agenda[] | null> {
     try {
-      const response = await axios.get<Aula[]>(
-        this.baseUrl + `/aluno/${id}/aulas-hoje`,
+      const response = await axios.get<Agenda[]>(
+        this.baseUrl + `/pessoa/${id}/agenda-hoje`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -197,12 +202,181 @@ export class Api {
     }
   }
 
-  static async pegarQntdAlunosPorIdDaDisciplina(
+  static async pegarQntdAlunos(
     idProfessor: number
   ): Promise<qntdAlunos | null> {
     try {
       const response = await axios.get<qntdAlunos>(
         this.baseUrl + `/professor/${idProfessor}/qtd-alunos`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Resposta da API recebida:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar aulas:", error);
+      return null;
+    }
+  }
+
+  static async pegarDisciplinasMinistradas(
+    idProfessor: number
+  ): Promise<DisciplinaMinistrada[] | null> {
+    try {
+      const response = await axios.get<DisciplinaMinistrada[]>(
+        this.baseUrl + `/professor/${idProfessor}/disciplinas`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Resposta da API recebida:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar aulas:", error);
+      return null;
+    }
+  }
+
+  static async criarProva(
+    idDisciplina: number,
+    descricao: string,
+    data: string
+  ) {
+    try {
+      const response = await axios.post(
+        this.baseUrl + `/professor/disciplina/${idDisciplina}/avaliacao`,
+        { descricao, data },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Resposta da API recebida:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao criar prova:", error);
+      return null;
+    }
+  }
+
+  static async editarProva(
+    idAvaliacao: number,
+    descricao: string,
+    data: string
+  ) {
+    try {
+      const response = await axios.put(
+        this.baseUrl + `/professor/avaliacao/${idAvaliacao}`,
+        { descricao, data },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Resposta da API recebida:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao criar prova:", error);
+      return null;
+    }
+  }
+
+  static async pegarAvaliacoesCriadas(
+    idDisciplina: number
+  ): Promise<AvaliacaoCriada[] | null> {
+    try {
+      const response = await axios.get<AvaliacaoCriada[]>(
+        this.baseUrl + `/professor/disciplina/${idDisciplina}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Resposta da API recebida:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar aulas:", error);
+      return null;
+    }
+  }
+
+  static async pegarResultadoAvaliacoes(
+    idAvaliacao: number
+  ): Promise<ResultadoAvaliacao[] | null> {
+    try {
+      const response = await axios.get<ResultadoAvaliacao[]>(
+        this.baseUrl + `/professor/avaliacao/${idAvaliacao}/resultados`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Resposta da API recebida:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar aulas:", error);
+      return null;
+    }
+  }
+
+  static async criarResultadoAvaliacao(
+    idAvaliacao: number,
+    idAluno: number,
+    idProfessor: number,
+    nota: number,
+    feedback: string
+  ) {
+    try {
+      const response = await axios.post(
+        this.baseUrl + `/professor/avaliacao/${idAvaliacao}`,
+        { idAluno, idProfessor, nota, feedback },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Resposta da API recebida:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar aulas:", error);
+      return null;
+    }
+  }
+
+  static async deletarAvaliacao(idAvaliacao: number) {
+    try {
+      const response = await axios.delete(
+        this.baseUrl + `/professor/avaliacao/${idAvaliacao}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Resposta da API recebida:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao deletar aula:", error);
+      return null;
+    }
+  }
+
+  static async pegarAlunosMatriculados(
+    idDisciplina: number
+  ): Promise<AlunoMatriculado[] | null> {
+    try {
+      const response = await axios.get<AlunoMatriculado[]>(
+        this.baseUrl + `/professor/disciplina/${idDisciplina}/alunos`,
         {
           headers: {
             "Content-Type": "application/json",

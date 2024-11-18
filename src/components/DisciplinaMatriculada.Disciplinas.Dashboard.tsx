@@ -6,7 +6,6 @@ import { RelatorioNotas } from "./RelatorioNotas.DisciplinaMatriculada.Disciplin
 import { AtributoDisciplinaMatriculada } from "./Atributo.DisciplinaMatriculada.Disciplinas.Dashboard";
 import { Avaliacao } from "@/types/avaliacao.type";
 import { Api } from "@/lib/api";
-import { Falta } from "@/types/faltas.type";
 
 interface Props {
   className?: string;
@@ -63,7 +62,7 @@ export function DisciplinaMatriculada({
     };
 
     fetchAvaliacoes();
-  }, []);
+  }, [idDisciplina, idPessoa]);
 
   return (
     <div className={`${className} w-full`}>
