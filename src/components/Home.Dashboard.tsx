@@ -68,7 +68,7 @@ export function HomeDashboard({ className, pessoa }: Props) {
     return (
       <div className={`${className} w-full`}>
         <div className="w-full flex space-x-5">
-          <div className="space-y-5 w-full">
+          <div className="space-y-5 w-1/2">
             <div className="flex items-center space-x-5">
               <BlocoDashboard
                 Icone={GraduationCap}
@@ -88,16 +88,18 @@ export function HomeDashboard({ className, pessoa }: Props) {
             </div>
             <IaAlert />
           </div>
-          <CalendarioDashboard pessoa={pessoa} />
+          <div className="w-1/2">
+            <CalendarioDashboard pessoa={pessoa} />
+          </div>
         </div>
       </div>
     );
   } else {
     return (
       <div className={`${className} w-full`}>
-        <div className="w-full flex space-x-5">
-          <div className="space-y-5 w-full">
-            <div className="flex justify-between items-center space-x-5">
+        <div className="flex space-x-5">
+          <div className="w-1/2 space-y-5">
+            <div className="flex justify-between items-center space-x-5 ">
               <BlocoDashboard
                 Icone={GraduationCap}
                 titulo={cadeiras.length}
@@ -112,7 +114,9 @@ export function HomeDashboard({ className, pessoa }: Props) {
             </div>
             <TabelaRendimento pessoa={pessoa} />
           </div>
-          <CalendarioDashboard pessoa={pessoa} />
+          <div className="w-1/2">
+            <CalendarioDashboard pessoa={pessoa} />
+          </div>
         </div>
       </div>
     );

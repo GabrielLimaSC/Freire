@@ -28,6 +28,8 @@ export function FinanceiroDashboard({ className, pessoa }: Props) {
   }, [pessoa?.idPessoa]);
 
   const pagarFatura = async (id_pagamento: number) => {
+    const retorno = await Api.pagarFatura(id_pagamento);
+
     setFaturas((prev) =>
       prev.map((fatura) =>
         fatura.id_pagamento === id_pagamento

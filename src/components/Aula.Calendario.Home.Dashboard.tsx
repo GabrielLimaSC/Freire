@@ -21,7 +21,7 @@ export function AulaCalendario({
     <div className="p-3 flex justify-start items-center border rounded-xl space-x-5 w-full">
       <div
         className={`rounded-xl ${
-          isProva ? "bg-blue-600" : "bg-red-600"
+          !isProva ? "bg-blue-600" : "bg-red-600"
         } p-2 text-xl`}
       >
         <BookText />

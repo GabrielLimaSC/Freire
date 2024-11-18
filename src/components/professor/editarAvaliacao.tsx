@@ -38,7 +38,7 @@ const EditarAvaliacao = ({
   onClose,
   isOpen,
 }: Props) => {
-  const [date, setDate] = useState<Date>();
+  const [date, setDate] = useState<Date | null>(null);
   const [name, setName] = useState<string>("");
 
   useEffect(() => {
@@ -104,7 +104,7 @@ const EditarAvaliacao = ({
                   )}
                 >
                   <CalendarIcon />
-                  {date ? (
+                  {date && name ? (
                     format(date, "PPP", { locale: pt })
                   ) : (
                     <span>Selecione uma data</span>
@@ -114,7 +114,6 @@ const EditarAvaliacao = ({
               <PopoverContent className="w-auto p-0" align="start">
                 <Calendar
                   mode="single"
-                  selected={date}
                   onSelect={(day) => day && setDate(day)}
                   initialFocus
                 />

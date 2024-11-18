@@ -56,7 +56,14 @@ export function FaturaFinanceiro({
       <div className="w-full border rounded-xl py-5 px-12">
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-xl font-semibold">Fatura {mesNome}</h1>
+            <h1
+              className={
+                "text-xl font-semibold " +
+                (fatura.status ? "text-muted-foreground" : "")
+              }
+            >
+              Fatura {mesNome}
+            </h1>
             <div
               className={`flex justify-start items-center w-fit px-2 rounded mt-1 ${
                 fatura.status ? "bg-muted" : "bg-muted-foreground"

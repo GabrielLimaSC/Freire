@@ -108,7 +108,7 @@ const VerResultados = ({
                     <h2 className="text-lg font-semibold">
                       {resultadoAvaliacao.nome_aluno}
                     </h2>
-                    {resultadoAvaliacao.nota > 0 && (
+                    {resultadoAvaliacao.nota >= 0 && (
                       <div>
                         <p>Nota: {resultadoAvaliacao.nota}</p>
                         <p>Descrição: {resultadoAvaliacao.feedback}</p>

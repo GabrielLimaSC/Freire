@@ -36,7 +36,7 @@ export class Api {
   static async pegarAgendaPessoa(id: number): Promise<Agenda[] | null> {
     try {
       const response = await axios.get<Agenda[]>(
-        this.baseUrl + `/pessoa/${id}/agenda-hoje`,
+        this.baseUrl + `/pessoas/${id}/agenda-hoje`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -376,6 +376,24 @@ export class Api {
     try {
       const response = await axios.get<AlunoMatriculado[]>(
         this.baseUrl + `/professor/disciplina/${idDisciplina}/alunos`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Resposta da API recebida:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar aulas:", error);
+      return null;
+    }
+  }
+
+  static async pagarFatura(idBoleto: number) {
+    try {
+      const response = await axios.put(
+        this.baseUrl + `/aluno/${idBoleto}/pagamento`,
         {
           headers: {
             "Content-Type": "application/json",

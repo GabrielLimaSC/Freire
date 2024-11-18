@@ -36,10 +36,6 @@ export function SidebarDashboard() {
       title: "Financeiro",
       icon: Landmark,
     },
-    {
-      title: "Configurações",
-      icon: Settings,
-    },
   ];
 
   if (pessoa?.tipo === "professor") {
@@ -51,10 +47,6 @@ export function SidebarDashboard() {
       {
         title: "Disciplinas",
         icon: BookCopy,
-      },
-      {
-        title: "Configurações",
-        icon: Settings,
       },
     ];
   }

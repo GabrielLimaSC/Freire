@@ -61,8 +61,8 @@ export function CalendarioDashboard({ pessoa }: Props) {
   }, [pessoa.idPessoa]);
 
   return (
-    <div className="flex w-full border rounded-xl p-5 h-fit">
-      <div className="flex flex-col space-y-5 w-full">
+    <div className="flex w-full border rounded-xl p-5 h-full">
+      <div className="flex flex-col space-y-5 w-full h-max">
         <div>
           <h1 className="text-xl font-semibold">
             {diaSemanaNome}, {data.dia} de {mesNome}
